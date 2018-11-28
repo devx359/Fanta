@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Test Suite">
+	<parameter name="Excelsheet" value="DataSheet1.xlsx"></parameter>
+	<parameter name="environment" value="itest"></parameter>
+	
+	<test thread-count="5" name="SmokeTest">
+		<parameter name="sheetName" value="SmokeSuite"></parameter>
+		<classes>
+			<class name="executionEngine.DriverScript" />
+		</classes>
+	</test>
+	
+	<test thread-count="5" name="FunctionalTest">
+
+		<parameter name="sheetName" value="FunctionalSuite"></parameter>
+		<classes>
+			<class name="executionEngine.DriverScript" />
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->

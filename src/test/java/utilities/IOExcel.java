@@ -238,4 +238,34 @@ public class IOExcel {
 
 	}
 
+	// This method is to get the Row number of the test case
+	// This methods takes three arguments(Test Case name , Column Number & Sheet
+	// name)
+	public int getRowContains(String sTestCaseName, int colNum, String SheetName) throws Exception {
+		int i;
+		sheet = wbook.getSheet(SheetName);
+		int rowCount = Getrowcount(SheetName);
+		for (i = 0; i < rowCount; i++) {
+			if (getExcelStringData(i, colNum, SheetName).equalsIgnoreCase(sTestCaseName)) {
+				break;
+			}
+		}
+		return i;
+	}
+
+	// This method is to get the count of the test steps of test case
+	// This method takes three arguments (Sheet name, Test Case Id & Test case row
+	// number)
+/*	public int getTestStepsCount(String SheetName, String sTestCaseID, int iTestCaseStart) throws Exception {
+		for (int i = iTestCaseStart; i <= Getrowcount(SheetName); i++) {
+			if (!sTestCaseID.equals(getExcelStringData(i, Constants.Col_TestCaseID, SheetName))) {
+				int number = i;
+				return number;
+			}
+		}
+		sheet = wbook.getSheet(SheetName);
+		int number = sheet.getLastRowNum() + 1;
+		return number;
+	}*/
+
 }

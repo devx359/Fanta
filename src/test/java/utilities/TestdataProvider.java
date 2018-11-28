@@ -11,7 +11,7 @@ public class TestdataProvider {
 	public static Object[][] testdataProvider(ITestContext context) {
 
 		String datasheet = context.getCurrentXmlTest().getParameter("Excelsheet");
-		String sheetName = "Test Steps";
+		String sheetName = context.getCurrentXmlTest().getParameter("sheetName");
 		//System.out.println("Sheet Name: "+sheetName);
 
 		IOExcel obj = new IOExcel();
