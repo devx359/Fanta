@@ -47,6 +47,23 @@ public class IOExcel {
 		}
 		return rowcount;
 	}
+	
+	public int GetColoumnCount(String sheetname) {
+		int col_count=0;
+		try {
+			sheet = wbook.getSheet(sheetname);
+			//rowcount = sheet.get;
+			col_count=sheet.getRow(0).getLastCellNum();
+			//sheet.getLastCellNum();
+		
+
+
+		} catch (Exception e) {
+			// Log.error("Excel file data problem: "+e);
+			e.printStackTrace();
+		}
+		return rowcount;
+	}
 
 	public void excelSetup(String filePath) {
 		try {
@@ -149,11 +166,35 @@ public class IOExcel {
 		} catch (Exception e) {
 			// Log.error("Excel file data problem: "+e);
 			System.out.println("Excel getExcelStringData problem: " + e);
-			// e.printStackTrace();
+			 e.printStackTrace();
 		}
 		return cellvalue;
 	}
 
+	//Searche excel sheet and return data based on some text(Ex Test case name)
+	public String getStringDataBasedOnKey(String testCaseId, String sheetname,int col) {
+		String cellvalue = null;
+		String return_val=null;
+
+		try {
+			sheet = wbook.getSheet(sheetname);
+			rowcount = sheet.getLastRowNum();
+			int i=0;
+			for(i=0;i<rowcount;i++)
+			{
+				cellvalue = sheet.getRow(i).getCell(col).getStringCellValue();
+				if(cellvalue.equalsIgnoreCase(testCaseId))
+				break;
+			}
+			cellvalue = sheet.getRow(i).getCell(col).getStringCellValue();
+			return_val=sheet.getRow(i).getCell(2).getStringCellValue();
+		} catch (Exception e) {
+			// Log.error("Excel file data problem: "+e);
+			System.out.println("Excel getExcelStringData problem: " + e);
+			 e.printStackTrace();
+		}
+		return return_val;
+	}
 	public Integer getExcelIntData(int row, int col, String sheetname) {
 		Integer cellvalue = 0;
 

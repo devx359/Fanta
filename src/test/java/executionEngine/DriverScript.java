@@ -1,5 +1,6 @@
 package executionEngine;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Hashtable;
@@ -13,13 +14,23 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+
+import utilities.ExtentManager;
 import config.ActionKeywords;
 import config.PathUtility;
+import projSpecificUtilities.Dbconnection;
 import utilities.DriverUtil;
 import utilities.IOExcel;
 import utilities.Locator;
 import utilities.TestdataProvider;
+import utilities.ExtentManager;;
 
+/*To Run this from Maven
+ * mvn clean install -DsuiteXmlFile=testRunner2.xml -DnumberOfTests=1 -DjobNumber=3
+ * 
+*/
 public class DriverScript {
 	public DriverUtil drvutil;
 	public WebDriver driver;
@@ -36,13 +47,15 @@ public class DriverScript {
 	public String action;
 	public int testSteps;
 	public String testClass;
-	public static String SmokeTestStatus="pass";
+	public static String SmokeTestStatus = "pass";
 	public String sheetName;
-	int numberOfTests; //how many parallel tests you want to run
-	int jobNumber;	//job serial number
-
-	
-	
+	int numberOfTests; // how many parallel tests you want to run
+	int jobNumber; // job serial number
+	ExtentManager ExtentManagerObj;
+	ExtentReports reports;
+	public ExtentTest test;
+	Dbconnection dbcon;
+	IOExcel xl;
 
 	@BeforeTest
 	public void classLoad(ITestContext context) {
@@ -52,67 +65,81 @@ public class DriverScript {
 		pathutil = new PathUtility(context);
 		actionKeywords = new ActionKeywords(driver, locator);
 		method = actionKeywords.getClass().getMethods();
-		sheetName=context.getCurrentXmlTest().getParameter("sheetName");
+		sheetName = context.getCurrentXmlTest().getParameter("sheetName");
+		ExtentManagerObj = new ExtentManager();
+		reports = ExtentManagerObj.GetExtent(this.getClass().getSimpleName().toString());
 		System.out.println("class load");
 	}
 
-/*	@Test(dataProvider = "testSteps", dataProviderClass = TestdataProvider.class, priority = 1)
-	public void testRunner(Hashtable<String, String> tdata, ITestContext context) throws InterruptedException {
-		
-		try {
-			
-			excel = (IOExcel) context.getAttribute("Excelobj");// Get excel object already initialized by testdata
+	/*
+	 * @Test(dataProvider = "testSteps", dataProviderClass = TestdataProvider.class,
+	 * priority = 1) public void testRunner(Hashtable<String, String> tdata,
+	 * ITestContext context) throws InterruptedException {
+	 * 
+	 * try {
+	 * 
+	 * excel = (IOExcel) context.getAttribute("Excelobj");// Get excel object
+	 * already initialized by testdata
+	 * 
+	 * tc_id = tdata.get("Test Case ID"); runmode = tdata.get("Runmode"); testClass
+	 * = tdata.get("TestClass"); System.out.println("TestClass: " + testClass +
+	 * " |runmode: " + runmode + " |tc_id: " +
+	 * tc_id+" |SmokeTestStatus: "+SmokeTestStatus); execute_testcase2(); } catch
+	 * (Exception e) {
+	 * 
+	 * e.printStackTrace(); }
+	 * 
+	 * 
+	 * 
+	 * }
+	 */
 
-			tc_id = tdata.get("Test Case ID");
-			runmode = tdata.get("Runmode");
-			testClass = tdata.get("TestClass");
-			System.out.println("TestClass: " + testClass + " |runmode: " + runmode + " |tc_id: " + tc_id+" |SmokeTestStatus: "+SmokeTestStatus);
-			execute_testcase2();
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
-
-		
-
-	}*/
-	
-	@Test( priority = 1)
+	@Test(priority = 1)
 	public void testRunner(ITestContext context) throws InterruptedException {
-		
+
 		try {
+
 			System.out.println("Inside testrunner");
-			/*numberOfTests=1;
-			jobNumber=1;*/
-			numberOfTests=Integer.parseInt(System.getProperty("numberOfTests"));
-			jobNumber=Integer.parseInt(System.getProperty("jobNumber"));
-			int startRow=(numberOfTests*(jobNumber-1))+1;
-			System.out.println("startRow:"+startRow);
+			/*numberOfTests = 1;
+			jobNumber = 1;*/
+			
+			 numberOfTests=Integer.parseInt(System.getProperty("numberOfTests"));
+			 jobNumber=Integer.parseInt(System.getProperty("jobNumber"));
+			 
+			int startRow = (numberOfTests * (jobNumber - 1)) + 1;
+			System.out.println("startRow:" + startRow);
 			String datasheet = context.getCurrentXmlTest().getParameter("Excelsheet");
 			String sheetName = context.getCurrentXmlTest().getParameter("sheetName");
-			
-			IOExcel xl= new IOExcel();
+
+			System.out.println("----------------------------------------------------------");
+			System.out.println("                   " + sheetName + "                          ");
+			System.out.println("----------------------------------------------------------");
+
+			xl = new IOExcel();
 			xl.excelSetup("./src/test/java/dataEngine/" + datasheet);
-			
-			for(int i=startRow;i<(startRow+numberOfTests);i++)
-			{
-			tc_id = xl.getExcelStringData(i, 0, sheetName);
-			runmode = xl.getExcelStringData(i, 2, sheetName);
-			testClass = xl.getExcelStringData(i, 4, sheetName);;
-			System.out.println(i+"TestClass: " + testClass + " |runmode: " + runmode + " |tc_id: " + tc_id+" |SmokeTestStatus: "+SmokeTestStatus);
-		//	execute_testcase2();
+
+			for (int i = startRow; i < (startRow + numberOfTests); i++) {
+
+				tc_id = xl.getExcelStringData(i, 0, sheetName);
+				runmode = xl.getExcelStringData(i, 2, sheetName);
+				testClass = xl.getExcelStringData(i, 4, sheetName);
+
+				System.out.println("----------X-----------" + tc_id + "-------------X-----------");
+				test = reports.createTest(tc_id);
+				ExtentManagerObj.setReportName(sheetName);
+				test.info("running " + tc_id);
+				System.out.println(i + "TestClass: " + testClass + " |runmode: " + runmode + " |tc_id: " + tc_id
+						+ " |SmokeTestStatus: " + SmokeTestStatus);
+				execute_testcase2();
 			}
 		} catch (Exception e) {
 
 			e.printStackTrace();
 		}
 
-		
-
 	}
-	
 
-	@Test(priority = 2)
+	// @Test(priority = 2)
 	public void testSteps() {
 	};
 
@@ -121,19 +148,15 @@ public class DriverScript {
 	public void execute_testcase2() {
 		try {
 			if (runmode.equalsIgnoreCase("Yes")) {
-				
-
 				if ((!SmokeTestStatus.equalsIgnoreCase("fail"))) {
-
-					Class<?> clazz = Class.forName("TestCases." + testClass);
-					Object testclazz = clazz.newInstance();
-
-					((DriverScript) testclazz).testSteps();
-
+					Class<?> clazz = Class.forName("TestCases." + testClass); // Gets the class object from class name
+					Constructor<?> cons = clazz.getConstructor(ExtentTest.class, WebDriver.class, IOExcel.class);
+					Object obj = cons.newInstance(test, driver, xl);					
+					((DriverScript) obj).testSteps();
 				}
 			}
 		} catch (Exception e) {
-
+			System.out.println("issue in excute testcase " + e);
 			e.printStackTrace();
 		}
 	}
@@ -182,8 +205,8 @@ public class DriverScript {
 	}
 
 	@AfterTest
-	public void shutDown()
-	{
+	public void shutDown() {
+		reports.flush();
 		driver.quit();
 	}
 }

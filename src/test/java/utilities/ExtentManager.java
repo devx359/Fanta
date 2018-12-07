@@ -37,6 +37,18 @@ public class ExtentManager {
         extent.setSystemInfo("User Name", "Debapriyo Haldar");
 		return extent;
 	}
+	
+	public void setReportName(String reportName)
+	{
+        htmlReporter.config().setReportName(reportName);
+	}
+	
+	//This is the tab name
+	public void setReportTitle(String reportName)
+	{
+        htmlReporter.config().setDocumentTitle(reportName);
+   
+	}
  
 	private  ExtentHtmlReporter getHtmlReporter(String ReportName) {
 		System.out.println(filePath);
@@ -45,7 +57,7 @@ public class ExtentManager {
 		
 	// make the charts visible on report open
      //   htmlReporter.config().setChartVisibilityOnOpen(true);		
-        htmlReporter.config().setDocumentTitle("API Automation Report");
+        htmlReporter.config().setDocumentTitle("Automation Report");
         htmlReporter.config().setReportName(ReportName);
         return htmlReporter;
 	}
