@@ -172,7 +172,8 @@ public class IOExcel {
 	}
 
 	//Searche excel sheet and return data based on some text(Ex Test case name)
-	public String getStringDataBasedOnKey(String testCaseId, String sheetname,int col) {
+	//Make sure testCaseID is the 1st coloumn in excel
+	public String getStringDataBasedOnTestCaseID(String testCaseId, String sheetname,int DesiredDatacol) {
 		String cellvalue = null;
 		String return_val=null;
 
@@ -182,12 +183,12 @@ public class IOExcel {
 			int i=0;
 			for(i=0;i<rowcount;i++)
 			{
-				cellvalue = sheet.getRow(i).getCell(col).getStringCellValue();
+				cellvalue = sheet.getRow(i).getCell(0).getStringCellValue();
 				if(cellvalue.equalsIgnoreCase(testCaseId))
 				break;
 			}
-			cellvalue = sheet.getRow(i).getCell(col).getStringCellValue();
-			return_val=sheet.getRow(i).getCell(2).getStringCellValue();
+			//cellvalue = sheet.getRow(i).getCell(col).getStringCellValue();
+			return_val=sheet.getRow(i).getCell(DesiredDatacol).getStringCellValue();
 		} catch (Exception e) {
 			// Log.error("Excel file data problem: "+e);
 			System.out.println("Excel getExcelStringData problem: " + e);

@@ -100,11 +100,11 @@ public class DriverScript {
 		try {
 
 			System.out.println("Inside testrunner");
-			/*numberOfTests = 1;
-			jobNumber = 1;*/
+			numberOfTests = 1;
+			jobNumber = 1;
 			
-			 numberOfTests=Integer.parseInt(System.getProperty("numberOfTests"));
-			 jobNumber=Integer.parseInt(System.getProperty("jobNumber"));
+	/*		 numberOfTests=Integer.parseInt(System.getProperty("numberOfTests"));
+			 jobNumber=Integer.parseInt(System.getProperty("jobNumber"));*/
 			 
 			int startRow = (numberOfTests * (jobNumber - 1)) + 1;
 			System.out.println("startRow:" + startRow);
