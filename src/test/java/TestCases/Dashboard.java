@@ -60,7 +60,9 @@ public class Dashboard extends DriverScript {
 			link.JSClick("view_dashboard");
 			/*String path=ashot.takeFullScreenShot("scr").replace(".\\", System.getProperty("user.dir").toString()+"\\");
 			System.out.println(path);*/
-			test.info("test", MediaEntityBuilder.createScreenCaptureFromPath(ashot.takeFullScreenShot("scr")).build());
+			String pth=ashot.takeFullScreenShot("scr");
+			System.out.println("Screen shot path "+pth);
+			test.info("test", MediaEntityBuilder.createScreenCaptureFromPath(pth).build());
 			//System.out.println(System.getProperty("user.dir"));	 
 			//throw new ArithmeticException("Student is not eligible for registration"); 
 			//
