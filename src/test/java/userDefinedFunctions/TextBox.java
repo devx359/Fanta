@@ -11,7 +11,9 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestContext;
 
+import com.aventstack.extentreports.ExtentTest;
 import com.paulhammant.ngwebdriver.NgWebDriver;
 
 import utilities.Locator;
@@ -21,10 +23,12 @@ public class TextBox {
 
 	WebDriver driver;
 	Locator locator;
+	ExtentTest test;
 
-	public TextBox(WebDriver driver) {
+	public TextBox(WebDriver driver,ITestContext context) {
 		this.driver = driver;
 		locator= new Locator();		
+		test = (ExtentTest)context.getAttribute("extent");
 	}
 
 	public void SetText(String strxpath, String strData) {
@@ -35,6 +39,7 @@ public class TextBox {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(textboxLocator)).sendKeys(strData);
 		} catch (Exception e) {
 			e.printStackTrace();
+			test.error(e);
 			Assert.fail();
 		}
 
@@ -49,7 +54,7 @@ public class TextBox {
 			System.out.println("enter key pressed");
 		} catch (Exception e) {
 			e.printStackTrace();
-
+			test.error(e);
 		}
 
 	}
@@ -63,7 +68,7 @@ public class TextBox {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-
+			test.error(e);
 		}
 
 	}
@@ -93,6 +98,7 @@ public class TextBox {
 			driver.switchTo().window(parentWindow);
 		} catch (Exception e) {
 			e.printStackTrace();
+			test.error(e);
 		}
 
 	}

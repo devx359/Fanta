@@ -13,7 +13,9 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestContext;
 
+import com.aventstack.extentreports.ExtentTest;
 import com.paulhammant.ngwebdriver.NgWebDriver;
 
 import utilities.Locator;
@@ -21,13 +23,14 @@ import utilities.Locator;
 public class Button {
 
 	WebDriver driver;
-
+	ExtentTest test;
 	Locator locator;
 
-	public Button(WebDriver drivers) {
+	public Button(WebDriver drivers,ITestContext context) {
 		driver = drivers;
 	
 		locator = new Locator();
+		test = (ExtentTest)context.getAttribute("extent");
 	}
 
 	// WebDriverSelector webdriver = new WebDriverSelector();
@@ -41,7 +44,7 @@ public class Button {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-
+			test.error(e);
 		}
 
 	}
@@ -59,7 +62,7 @@ public class Button {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-
+			test.error(e);
 		}
 
 	}
@@ -78,6 +81,7 @@ public class Button {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			test.error(e);
 			return enabled;
 		}
 

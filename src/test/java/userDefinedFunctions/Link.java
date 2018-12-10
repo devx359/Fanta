@@ -14,7 +14,9 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestContext;
 
+import com.aventstack.extentreports.ExtentTest;
 import com.paulhammant.ngwebdriver.NgWebDriver;
 
 import utilities.Locator;
@@ -24,11 +26,13 @@ public class Link {
 
 	WebDriver driver;
 	Locator locator;
+	ExtentTest test;
 	
-	public Link(WebDriver driver)
+	public Link(WebDriver driver,ITestContext context)
 	{
 		this.driver=driver;
 		locator = new Locator();
+		test = (ExtentTest)context.getAttribute("extent");
 	}
 
 	public void navigateToURL(String actualURL) {
@@ -36,11 +40,9 @@ public class Link {
 
 			driver.get(actualURL);
 
-		} catch (TimeoutException e) {
-			System.out.println("Page: " + actualURL + " did not load within 45 seconds!"+e);
-
-		} catch (Exception e) {
+		}  catch (Exception e) {
 			System.out.println("Unable to open " + actualURL+ e);
+			test.error(e);
 			
 		}
 	}
@@ -55,7 +57,7 @@ public class Link {
 			wait.until(ExpectedConditions.elementToBeClickable(LinkLocator)).click();
 		} catch (Exception e) {
 			System.out.println("Unable to click on link: " + strxpath +" "+e);
-			
+			test.error(e);
 			Assert.fail();
 		}
 
@@ -67,7 +69,8 @@ public class Link {
 			WebDriverWait wait = new WebDriverWait(driver, 10);			
 			wait.until(ExpectedConditions.presenceOfElementLocated(LinkLocator)).click();
 		} catch (Exception e) {
-			System.out.println("Unable to click on link: " + strxpath +" "+e);			
+			System.out.println("Unable to click on link: " + strxpath +" "+e);	
+			test.error(e);
 			Assert.fail();
 		}
 
@@ -86,6 +89,7 @@ public class Link {
 		} catch (Exception e) {
 			System.out.println("Unable to click on link " + strxpath +e);
 			e.printStackTrace();
+			test.error(e);
 			Assert.fail();
 			
 		}

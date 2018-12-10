@@ -44,8 +44,9 @@ public class AshotUtil {
 
 			e.printStackTrace();
 		}
-		System.out.println("Screenshot Taken..Cheeeese !!");
-		return filepath.replace("/", "\\\\");
+		System.out.println("Screenshot Taken..Cheeeese !!"+filepath);
+		//String path1=filepath.replace("/", "\\\\");
+		return filepath.replace("/", "\\\\").replace(".\\", System.getProperty("user.dir").toString()+"\\");
 
 	}
 	//Scrollable + element only screenshot +doesnt use Jquery internally

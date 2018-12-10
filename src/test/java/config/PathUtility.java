@@ -40,6 +40,7 @@ public class PathUtility {
 		qc_metadata_json_file_path="C:\\Users\\Indrajit-PC\\Desktop\\Jmeter\\Load Test\\Project1\\meta_data_qc.json";
 		impp_home="https://itest.imerit.net/dashboard.html#/welcome";
 		firebaseProjectID="platform-203105";
+		screenshotFolder = ".\\Screenshots\\";
 		if (environment.equalsIgnoreCase("itest")) {
 			
 			BaseFilepath = "D:\\Reports";
@@ -58,7 +59,7 @@ public class PathUtility {
 			mysqlpassword = "rds@ws#2017";
 			mysqldbname = "impp_poc";
 			weburl="https://itest.imerit.net/";  //Web url
-			screenshotFolder = "D:\\testdata\\Screenshots\\";
+			
 		} else if (environment.equalsIgnoreCase("alpha")) {
 			
 			BaseFilepath = "D:\\Reports";
@@ -76,7 +77,6 @@ public class PathUtility {
 			mysqlpassword = "rds@ws#2017";
 			mysqldbname = "impp_alpha_09082018";
 			weburl="https://alpha.imerit.net/";  //Web url
-			screenshotFolder = "D:\\testdata\\Screenshots\\";
 			FB_SubmitAPI="us-central1-platform-203105.cloudfunctions.net";
 
 

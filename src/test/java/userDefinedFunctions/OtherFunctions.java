@@ -12,7 +12,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestContext;
 
+import com.aventstack.extentreports.ExtentTest;
 import com.paulhammant.ngwebdriver.NgWebDriver;
 
 import utilities.Locator;
@@ -23,12 +25,13 @@ Author:Debapriyo 13-oct-2018
 */
 public class OtherFunctions {
 	WebDriver driver;
-
+	ExtentTest test;
 	Locator locator;
 
-	public OtherFunctions(WebDriver drivers) {
+	public OtherFunctions(WebDriver drivers,ITestContext context) {
 		driver = drivers;
 		locator = new Locator();
+		test = (ExtentTest)context.getAttribute("extent");
 	}
 
 	public void GoogleLogin() {
@@ -50,6 +53,7 @@ public class OtherFunctions {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			test.error(e);
 			Assert.fail();
 		}
 
@@ -66,6 +70,7 @@ public class OtherFunctions {
 					ExpectedConditions.visibilityOfElementLocated(locator.getWebElement("button_connect_with_google")));
 			executor.executeScript("arguments[0].click();", elementToClick);
 		} catch (Exception e) {
+			test.error(e);
 			e.printStackTrace();
 		}
 	}
@@ -78,6 +83,7 @@ public class OtherFunctions {
 			elementToClick.click();
 		} catch (Exception e) {
 			System.out.println("Unable to click on link" + strxpath + e);
+			test.error(e);
 			// Assert.fail();
 		}
 
@@ -96,6 +102,7 @@ public class OtherFunctions {
 			executor.executeScript("arguments[0].click();", elementToClick);
 		} catch (Exception e) {
 			System.out.println("Unable to click on link" + strxpath1);
+			test.error(e);
 			// Assert.fail();
 		}
 
@@ -124,6 +131,7 @@ public class OtherFunctions {
 			 */
 		} catch (Exception e) {
 			System.out.println("Unable to click on link: " + strxpaths1 + strxpaths2 + " " + e);
+			test.error(e);
 			Assert.fail();
 		}
 
@@ -139,6 +147,7 @@ public class OtherFunctions {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			test.error(e);
 
 		}
 	}
@@ -154,6 +163,7 @@ public class OtherFunctions {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+	
 			return res;
 
 		}
@@ -174,6 +184,7 @@ public class OtherFunctions {
 		} catch (Exception e) {
 			e.printStackTrace();
 			result = false;
+		
 			return result;
 
 		}

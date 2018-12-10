@@ -56,12 +56,17 @@ public class DriverScript {
 	public ExtentTest test;
 	Dbconnection dbcon;
 	IOExcel xl;
+	ITestContext contextob;
 
 	@BeforeTest
 	public void classLoad(ITestContext context) {
+		contextob = context;// Set the context object which we will later pass it to reflection invoked
+							// testclass method .This will
+		// contain driver,excel obj
 		locator = new Locator();
 		drvutil = new DriverUtil();
 		driver = drvutil.DriverSetup("chrome");
+		context.setAttribute("driver", driver);
 		pathutil = new PathUtility(context);
 		actionKeywords = new ActionKeywords(driver, locator);
 		method = actionKeywords.getClass().getMethods();
@@ -100,12 +105,13 @@ public class DriverScript {
 		try {
 
 			System.out.println("Inside testrunner");
-			numberOfTests = 1;
-			jobNumber = 1;
-			
-	/*		 numberOfTests=Integer.parseInt(System.getProperty("numberOfTests"));
-			 jobNumber=Integer.parseInt(System.getProperty("jobNumber"));*/
-			 
+			/*
+			 * numberOfTests = 1; jobNumber = 1;
+			 */
+
+			numberOfTests = Integer.parseInt(System.getProperty("numberOfTests"));
+			jobNumber = Integer.parseInt(System.getProperty("jobNumber"));
+
 			int startRow = (numberOfTests * (jobNumber - 1)) + 1;
 			System.out.println("startRow:" + startRow);
 			String datasheet = context.getCurrentXmlTest().getParameter("Excelsheet");
@@ -117,6 +123,7 @@ public class DriverScript {
 
 			xl = new IOExcel();
 			xl.excelSetup("./src/test/java/dataEngine/" + datasheet);
+			context.setAttribute("excel", xl);
 
 			for (int i = startRow; i < (startRow + numberOfTests); i++) {
 
@@ -126,6 +133,7 @@ public class DriverScript {
 
 				System.out.println("----------X-----------" + tc_id + "-------------X-----------");
 				test = reports.createTest(tc_id);
+				context.setAttribute("extent", test);
 				ExtentManagerObj.setReportName(sheetName);
 				test.info("running " + tc_id);
 				System.out.println(i + "TestClass: " + testClass + " |runmode: " + runmode + " |tc_id: " + tc_id
@@ -143,15 +151,23 @@ public class DriverScript {
 	public void testSteps() {
 	};
 
-	// public abstract void assertion();
-
+	// Invokes reflection classes to instantiate test classes and call the test
+	// methods
 	public void execute_testcase2() {
 		try {
 			if (runmode.equalsIgnoreCase("Yes")) {
 				if ((!SmokeTestStatus.equalsIgnoreCase("fail"))) {
 					Class<?> clazz = Class.forName("TestCases." + testClass); // Gets the class object from class name
-					Constructor<?> cons = clazz.getConstructor(ExtentTest.class, WebDriver.class, IOExcel.class);
-					Object obj = cons.newInstance(test, driver, xl);					
+					/*
+					 * Constructor<?> cons = clazz.getConstructor(ExtentTest.class, WebDriver.class,
+					 * IOExcel.class); Object obj = cons.newInstance(test, driver, xl);
+					 */
+					/*
+					 * Constructor<?> cons = clazz.getConstructor(); Object obj =
+					 * cons.newInstance();
+					 */
+					Constructor<?> cons = clazz.getConstructor(ITestContext.class);
+					Object obj = cons.newInstance(contextob);
 					((DriverScript) obj).testSteps();
 				}
 			}
@@ -206,7 +222,14 @@ public class DriverScript {
 
 	@AfterTest
 	public void shutDown() {
-		reports.flush();
-		driver.quit();
+		try {
+			reports.flush();
+			String Jname = System.getProperty("JenkinsJobName"); // Fetches job name from maven commandline in jenkins
+			ExtentManagerObj.copyFile("C:\\jenkins\\workspace\\" + Jname + "\\");
+			driver.quit();
+		} catch (Exception e) {
+			System.out.println("Report copy issue to jenkins workspace " + e);
+			e.printStackTrace();
+		}
 	}
 }
