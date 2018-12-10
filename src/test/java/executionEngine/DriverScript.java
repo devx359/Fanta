@@ -105,9 +105,9 @@ public class DriverScript {
 		try {
 
 			System.out.println("Inside testrunner");
-			/*
-			 * numberOfTests = 1; jobNumber = 1;
-			 */
+			
+			/*  numberOfTests = 1; jobNumber = 1;*/
+			
 
 			numberOfTests = Integer.parseInt(System.getProperty("numberOfTests"));
 			jobNumber = Integer.parseInt(System.getProperty("jobNumber"));
@@ -224,11 +224,11 @@ public class DriverScript {
 	public void shutDown() {
 		try {
 			reports.flush();
-			String Jname = System.getProperty("JenkinsJobName"); // Fetches job name from maven commandline in jenkins
-			ExtentManagerObj.copyFile("C:\\jenkins\\workspace\\" + Jname + "\\");
+			/*String Jname = System.getProperty("JenkinsJobName"); // Fetches job name from maven commandline in jenkins
+			ExtentManagerObj.copyFile("C:\\jenkins\\workspace\\" + Jname + "\\");*/
 			driver.quit();
 		} catch (Exception e) {
-			System.out.println("Report copy issue to jenkins workspace " + e);
+		//	System.out.println("Report copy issue to jenkins workspace " + e);
 			e.printStackTrace();
 		}
 	}
