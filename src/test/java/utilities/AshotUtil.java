@@ -1,6 +1,7 @@
 package utilities;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.Timestamp;
 
 import javax.imageio.ImageIO;
@@ -10,6 +11,10 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.MediaEntityModelProvider;
 
 import config.PathUtility;
 import ru.yandex.qatools.ashot.AShot;
@@ -115,6 +120,23 @@ public class AshotUtil {
 			e.printStackTrace();
 		}
 		return filepath.replace("/", "\\\\");
+	}
+	
+	/*embeds screenshot in extent report*/
+	public void embedScreenshotExtent(ExtentTest extentTestObject,String description,String screenshotName)
+	{
+		try {
+			ExtentTest test=extentTestObject;
+			MediaEntityModelProvider med;
+			test.info(description, MediaEntityBuilder.createScreenCaptureFromPath(takeFullScreenShot(screenshotName)).build());
+		} catch (IOException e) {
+			
+			System.out.println("Error printing screenshot "+e);
+		///	e.printStackTrace();
+		}
+		
+		
+		
 	}
 
 }

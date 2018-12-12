@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.MediaEntityModelProvider;
 
 import executionEngine.DriverScript;
 import junit.framework.Assert;
@@ -58,14 +59,8 @@ public class Dashboard extends DriverScript {
 			Assert.assertTrue(otherfunc.isDisplayed("addJob"));
 			otherfunc.jobTabMoreActionClick(jobcode);
 			link.JSClick("view_dashboard");
-			/*String path=ashot.takeFullScreenShot("scr").replace(".\\", System.getProperty("user.dir").toString()+"\\");
-			System.out.println(path);*/
-			String pth=ashot.takeFullScreenShot("scr");
-			System.out.println("Screen shot path "+pth);
-			test.info("test", MediaEntityBuilder.createScreenCaptureFromPath(pth).build());
-			//System.out.println(System.getProperty("user.dir"));	 
-			//throw new ArithmeticException("Student is not eligible for registration"); 
-			//
+			
+			ashot.embedScreenshotExtent(test, "dashboard page", "scr2"); //This will embed screenshot in extent report
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
