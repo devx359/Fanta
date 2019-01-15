@@ -1,6 +1,7 @@
 package userDefinedFunctions;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
@@ -32,6 +33,13 @@ public class OtherFunctions {
 		driver = drivers;
 		locator = new Locator();
 		test = (ExtentTest)context.getAttribute("extent");
+	}
+	
+	public void openNewTabandSwitchToIt(WebDriver driver)
+	{
+		((JavascriptExecutor) driver).executeScript("window.open()");
+		ArrayList<String> tab = new ArrayList<String>(driver.getWindowHandles());
+		driver.switchTo().window(tab.get(1));
 	}
 
 	public void GoogleLogin() {

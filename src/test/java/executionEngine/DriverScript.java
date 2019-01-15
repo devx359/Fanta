@@ -24,6 +24,7 @@ import projSpecificUtilities.Dbconnection;
 import utilities.DriverUtil;
 import utilities.IOExcel;
 import utilities.Locator;
+import utilities.RetryCountIfFailed;
 import utilities.TestdataProvider;
 import utilities.ExtentManager;;
 
@@ -98,7 +99,7 @@ public class DriverScript {
 	 * 
 	 * }
 	 */
-
+	
 	@Test(priority = 1)
 	public void testRunner(ITestContext context) throws InterruptedException {
 
@@ -106,11 +107,11 @@ public class DriverScript {
 
 			System.out.println("Inside testrunner");
 			
-			/*  numberOfTests = 1; jobNumber = 1;*/
+			  numberOfTests = 1; jobNumber = 1;
 			
 
-			numberOfTests = Integer.parseInt(System.getProperty("numberOfTests"));
-			jobNumber = Integer.parseInt(System.getProperty("jobNumber"));
+			/*numberOfTests = Integer.parseInt(System.getProperty("numberOfTests"));
+			jobNumber = Integer.parseInt(System.getProperty("jobNumber"));*/
 
 			int startRow = (numberOfTests * (jobNumber - 1)) + 1;
 			System.out.println("startRow:" + startRow);
@@ -147,7 +148,7 @@ public class DriverScript {
 
 	}
 
-	// @Test(priority = 2)
+
 	public void testSteps() {
 	};
 
