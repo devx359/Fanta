@@ -13,6 +13,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
+import org.apache.commons.codec.digest.DigestUtils;
+
 
 public class Demo {
 	WebDriver driver;
@@ -23,6 +25,13 @@ public class Demo {
 
 		/*switch (val) {
 		
+		/*JSONObject jsonreq = new JSONObject();
+			jsonreq.put("acl", "Manager");
+			jsonreq.put("identity", "I2034");
+			jsonreq.put("project_code", "LLA_001");
+			jsonreq.put("sub_project_code", "LLA_001_1");
+			jsonreq.put("role", "OTHER");*/
+	//	String data="{\"identity\":\""+data+"\",\"acl\":\"1st Operator\",\"project_code\":\"LLA_001\",\"sub_project_code\":\"LLA_001_1\",\"role\":\"OTHER\"}";
 			
 		case "chrome":
 			System.out.println("its chrome");
