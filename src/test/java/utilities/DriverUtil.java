@@ -14,6 +14,7 @@ import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -34,6 +35,9 @@ public class DriverUtil {
 		 		/*cap.setBrowserName("chrome");
 		 		cap.setVersion("65");
 		 		cap.setPlatform(Platform.WIN10);*/
+		 		//cap.acceptInsecureCerts();
+		 		cap.setAcceptInsecureCerts(true);
+		 		cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				driver = new RemoteWebDriver(new URL(Node), cap);
 			
 				

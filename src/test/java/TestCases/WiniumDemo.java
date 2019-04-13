@@ -1,7 +1,10 @@
 package TestCases;
 
+import java.net.URL;
+
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.winium.DesktopOptions;
+import org.openqa.selenium.winium.WiniumDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.Test;
 
@@ -13,7 +16,8 @@ import userDefinedFunctions.OtherFunctions;
 import utilities.Base64EncryptionUtil;
 import utilities.IOExcel;
 
-public class TC_006 extends DriverScript {
+public class WiniumDemo extends DriverScript {
+
 	ExtentTest test;
 	WebDriver driver;
 	IOExcel xl;
@@ -21,10 +25,8 @@ public class TC_006 extends DriverScript {
 	OtherFunctions otherfunc;
 	String jobcode;
 	Link link;
-	
-	
 
-	public TC_006(ITestContext context) {
+	public WiniumDemo(ITestContext context) {
 		// Get all set objects from context
 		test = (ExtentTest) context.getAttribute("extent");
 		xl = (IOExcel) context.getAttribute("excel");
@@ -32,15 +34,23 @@ public class TC_006 extends DriverScript {
 
 		// Initiate classes
 		b64 = new Base64EncryptionUtil();
-		otherfunc = new OtherFunctions(driver,context);
-		link = new Link(driver,context);
+		otherfunc = new OtherFunctions(driver, context);
+		link = new Link(driver, context);
 	}
 
-	@Override
 	@Test(priority = 2)
 	public void testSteps() {
-		System.out.println("Executing testcase 6");
-		// SmokeTestStatus="fail";
+
+		DesktopOptions options = new DesktopOptions();
+		options.setApplicationPath("C:\\WINDOWS\\system32\\notepad.exe");
+		try {
+			WiniumDriver driver2 = new WiniumDriver(new URL("http://localhost:9999"), options);
+			driver2.findElementByClassName("Edit").sendKeys("This is sample test");
+			driver2.close();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
 	}
 
 }
