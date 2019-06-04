@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="20" name="MyParalleSuite2">
+  <test name="GSM1">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test2"/>
+    </classes>
+  </test> <!-- GSM1 -->
+  <test name="GSM2">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test3"/>
+    </classes>
+  </test> <!-- GSM2 -->
+  <test name="GSM3">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test2"/>
+    </classes>
+  </test> <!-- GSM3 -->
+  <test name="GSM8">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test3"/>
+    </classes>
+  </test> <!-- GSM8 -->
+  <test name="GSM9">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test2"/>
+    </classes>
+  </test> <!-- GSM9 -->
+  <test name="GSM10">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test3"/>
+    </classes>
+  </test> <!-- GSM10 -->
+</suite> <!-- MyParalleSuite2 -->

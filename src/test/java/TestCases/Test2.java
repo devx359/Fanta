@@ -13,27 +13,12 @@ public class Test2 {
 	@Test
 	public void meth ()
 	{
-		System.out.println("Before function call");
-		System.out.println(fun("RAKESH","NAYAK"));
-		System.out.println("After function call");
-		
-		Test3 obj = new Test3();
-		obj.meth2();
-		obj.meth3(25);
+		System.out.println("Test2 called");
 		
 
 		
 			
 	}
-	
-	public String fun (String a,String b)
-	{
-		String result ;
-		result=b+a;
-		return result;
-		
-		
-		
-	}
+
 
 }

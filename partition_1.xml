@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="20" name="MyParalleSuite1">
+  <test name="GSM4">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test3"/>
+    </classes>
+  </test> <!-- GSM4 -->
+  <test name="GSM5">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test2"/>
+    </classes>
+  </test> <!-- GSM5 -->
+  <test name="GSM6">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test3"/>
+    </classes>
+  </test> <!-- GSM6 -->
+  <test name="GSM7">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test2"/>
+    </classes>
+  </test> <!-- GSM7 -->
+  <test name="nokia11">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test2"/>
+    </classes>
+  </test> <!-- nokia11 -->
+  <test name="nokia12">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test3"/>
+    </classes>
+  </test> <!-- nokia12 -->
+  <test name="GSM13">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test2"/>
+    </classes>
+  </test> <!-- GSM13 -->
+  <test name="GSM14">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test3"/>
+    </classes>
+  </test> <!-- GSM14 -->
+  <test name="GSM15">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test2"/>
+    </classes>
+  </test> <!-- GSM15 -->
+  <test name="GSM16">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test3"/>
+    </classes>
+  </test> <!-- GSM16 -->
+  <test name="GSM17">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test2"/>
+    </classes>
+  </test> <!-- GSM17 -->
+  <test name="GSM18">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test3"/>
+    </classes>
+  </test> <!-- GSM18 -->
+  <test name="GSM19">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test2"/>
+    </classes>
+  </test> <!-- GSM19 -->
+  <test name="GSM20">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test3"/>
+    </classes>
+  </test> <!-- GSM20 -->
+  <test name="GSM21">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test2"/>
+    </classes>
+  </test> <!-- GSM21 -->
+  <test name="GSM22">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test3"/>
+    </classes>
+  </test> <!-- GSM22 -->
+  <test name="GSM23">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test2"/>
+    </classes>
+  </test> <!-- GSM23 -->
+  <test name="GSM24">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test3"/>
+    </classes>
+  </test> <!-- GSM24 -->
+  <test name="GSM25">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test2"/>
+    </classes>
+  </test> <!-- GSM25 -->
+  <test name="GSM26">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test3"/>
+    </classes>
+  </test> <!-- GSM26 -->
+  <test name="GSM27">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test2"/>
+    </classes>
+  </test> <!-- GSM27 -->
+  <test name="GSM28">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test3"/>
+    </classes>
+  </test> <!-- GSM28 -->
+  <test name="GSM29">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test2"/>
+    </classes>
+  </test> <!-- GSM29 -->
+  <test name="GSM30">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test3"/>
+    </classes>
+  </test> <!-- GSM30 -->
+  <test name="GSM31">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test2"/>
+    </classes>
+  </test> <!-- GSM31 -->
+  <test name="GSM32">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test3"/>
+    </classes>
+  </test> <!-- GSM32 -->
+  <test name="GSM33">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test2"/>
+    </classes>
+  </test> <!-- GSM33 -->
+  <test name="GSM34">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test3"/>
+    </classes>
+  </test> <!-- GSM34 -->
+  <test name="GSM35">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test2"/>
+    </classes>
+  </test> <!-- GSM35 -->
+  <test name="GSM36">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test3"/>
+    </classes>
+  </test> <!-- GSM36 -->
+  <test name="GSM37">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test2"/>
+    </classes>
+  </test> <!-- GSM37 -->
+  <test name="GSM38">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test3"/>
+    </classes>
+  </test> <!-- GSM38 -->
+</suite> <!-- MyParalleSuite1 -->

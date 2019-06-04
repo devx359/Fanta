@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="20" name="MyParalleSuite3">
+  <test name="GSM39">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test2"/>
+    </classes>
+  </test> <!-- GSM39 -->
+  <test name="GSM40">
+    <parameter name="environment" value="itest"/>
+    <classes>
+      <class name="TestCases.Test3"/>
+    </classes>
+  </test> <!-- GSM40 -->
+</suite> <!-- MyParalleSuite3 -->

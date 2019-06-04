@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
 <suite name="Suite">
 	
 	<parameter name="Excelsheet" value="DataSheet1.xlsx"></parameter>
@@ -7,6 +7,30 @@
 	<test thread-count="5" name="FunctionalTest">
 
 		<parameter name="sheetName" value="FunctionalSuite"></parameter>
+		<classes>
+			<class name="executionEngine.DriverScript" />
+		</classes>
+
+	</test> <!-- Test -->
+	<test thread-count="5" name="FunctionalTest2">
+
+		<parameter name="sheetName2" value="FunctionalSuite"></parameter>
+		<classes>
+			<class name="executionEngine.DriverScript" />
+		</classes>
+
+	</test> <!-- Test -->
+	<test thread-count="5" name="FunctionalTest3">
+
+		<parameter name="sheetName2" value="FunctionalSuite"></parameter>
+		<classes>
+			<class name="executionEngine.DriverScript" />
+		</classes>
+
+	</test> <!-- Test -->
+	<test thread-count="5" name="FunctionalTest4">
+
+		<parameter name="sheetName4" value="FunctionalSuite"></parameter>
 		<classes>
 			<class name="executionEngine.DriverScript" />
 		</classes>

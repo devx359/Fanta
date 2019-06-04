@@ -4,24 +4,14 @@
  */
 package TestCases;
 
+import org.testng.annotations.Test;
 
 public class Test3 {
-	int x;
 	
-	/*public Test3()
-	{
-		System.out.println("I am in test3 constructor");
-		x=10;
-	}*/
-	
-	public void meth2()
-	{
-		System.out.println("I am in method 2");
-	}
-	
+	@Test
 	public void meth3(int y)
 	{
-		System.out.println("I am in method 3");
+		System.out.println("I am in Test 3");
 	}
 
 }

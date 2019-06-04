@@ -1,10 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>Fanta</groupId>
-  <artifactId>Fanta</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  
-  <properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>Fanta</groupId>
+	<artifactId>Fanta</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -153,12 +154,9 @@
 			<artifactId>ashot</artifactId>
 			<version>1.5.4</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.sikulix/sikulixapi -->
-		<dependency>
-			<groupId>com.sikulix</groupId>
-			<artifactId>sikulixapi</artifactId>
-			<version>1.1.2</version>
-		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.sikulix/sikulixapi <dependency> 
+			<groupId>com.sikulix</groupId> <artifactId>sikulixapi</artifactId> <version>1.1.2</version> 
+			</dependency> -->
 		<dependency>
 			<groupId>com.google.firebase</groupId>
 			<artifactId>firebase-admin</artifactId>
@@ -176,6 +174,26 @@
 			<artifactId>firebase-admin</artifactId>
 			<version>6.5.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.scijava/swing-checkbox-tree -->
+		<dependency>
+			<groupId>org.scijava</groupId>
+			<artifactId>swing-checkbox-tree</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/dom4j/dom4j -->
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/jaxen/jaxen -->
+		<dependency>
+			<groupId>jaxen</groupId>
+			<artifactId>jaxen</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+
+
 
 
 
