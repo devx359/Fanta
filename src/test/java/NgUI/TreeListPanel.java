@@ -17,11 +17,16 @@ import org.scijava.swing.checkboxtree.CheckBoxNodeEditor;
 import org.scijava.swing.checkboxtree.CheckBoxNodeRenderer;
 
 public class TreeListPanel extends JPanel {
+	DefaultMutableTreeNode root;
 
 	public TreeListPanel() {
 
-		final DefaultMutableTreeNode root = new DefaultMutableTreeNode("91Checklist");
+		root = new DefaultMutableTreeNode("91Checklist");
+		createTree();
 
+	}
+
+	public void createTree() {
 		for (int i = 0; i < 5; i++) {
 			final DefaultMutableTreeNode SuiteLevelNode = new DefaultMutableTreeNode("Suite_" + i);
 			for (int j = 0; j < 3; j++) {
@@ -31,6 +36,11 @@ public class TreeListPanel extends JPanel {
 
 		}
 
+		renderPhysicalTree();
+
+	}
+
+	private void renderPhysicalTree() {
 		final DefaultTreeModel treeModel = new DefaultTreeModel(root);
 		final JTree tree = new JTree(treeModel);
 
@@ -76,9 +86,15 @@ public class TreeListPanel extends JPanel {
 				System.out.println(System.currentTimeMillis() + ": structure changed");
 			}
 		});
-
 	}
 
+	/**
+	 * 
+	 * @param parent  : Parent DefaultMutableTreeNode
+	 * @param text    : Node label
+	 * @param checked :Checkbox checked or not
+	 * @return
+	 */
 	private static DefaultMutableTreeNode add(final DefaultMutableTreeNode parent, final String text,
 			final boolean checked) {
 		final CheckBoxNodeData data = new CheckBoxNodeData(text, checked);

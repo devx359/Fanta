@@ -56,15 +56,21 @@ public class ToolBar extends JPanel implements ActionListener {
 			{
 				
 				BrowseFileUtil browse = new BrowseFileUtil();
-				Dom4J ob = new Dom4J();
+				Dom4J dom4j = new Dom4J();
 				
 				//Browse files
 				String filename=browse.OpenFile();				
 				stringlistener.stringEmitter(filename);
 				
 				//Start Reading xml
-				ob.openXML(filename);
-				ob.getText("//suite/test");
+				dom4j.openXML(filename);
+				dom4j.getText("//suite/test");
+				
+				//Render Treel List
+				//TreeListPanel tpnl = new TreeListPanel();
+				//tpnl.createTree();
+				
+				
 				
 			}
 		}
